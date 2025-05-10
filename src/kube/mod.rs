@@ -115,9 +115,9 @@ pub async fn exec_into_node() {
     };
 
     println!("{}", "Connecting to the EC2 instance using SSM...".yellow());
-    println!("{}{}", "Instance id: ".green(), instanc_id.green());
+    println!("{}{}", "Instance id: ".green(), instance_id.green());
 
-    if let Err(err) = start_ssm_session(instanc_id, aws_region, aws_profile) {
+    if let Err(err) = start_ssm_session(instance_id, aws_region, aws_profile) {
         eprintln!("Failed to start SSM session: {}", err);
     }
 }

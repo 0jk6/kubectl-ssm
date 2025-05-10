@@ -23,7 +23,7 @@ pub async fn get_ec2_node_ips(config: &SdkConfig) -> HashMap<String, String> {
     let mut node_ips = HashMap::new();
 
     for reservation in response.reservations() {
-        let instances = reservations.instances();
+        let instances = reservation.instances();
 
         for instance in instances {
             let instance_id = instance.instance_id.clone();
@@ -53,7 +53,7 @@ pub fn extract_aws_profile(config: Config) -> String {
 
 //extract region from kubeconfig
 pub fn extract_aws_region(config: Config) -> Option<String> {
-    let re = Regex::neww(r"[a-z]{2}(?:-[a-z]+)+-\d+$").unwrap();
+    let re = Regex::new(r"[a-z]{2}(?:-[a-z]+)+-\d+$").unwrap();
     let url = config.cluster_url.to_string();
 
     url.split('.')
@@ -68,8 +68,8 @@ pub async fn get_ec2_instance_id(node_private_ip: String, aws_profile: String) -
 
     ec2_node_ips
         .get(&node_private_ip)
-        .clone()
-        .ok_or_else(|| format!("{} {}", "No instance ID found for private dns:".red(), node_private_ip.red()))
+        .cloned()
+        .ok_or_else(|| format!("{} {}", "No instance ID found for private DNS:".red(), node_private_ip.red()))
 }
 
 //start the ssm session
