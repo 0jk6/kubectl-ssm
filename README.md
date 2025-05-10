@@ -1,6 +1,7 @@
 # kubectl-ssm
 This is a simple kubectl plugin to connect to a Kubernetes node using AWS SSM.
 
+
 #### Requirements
 - kubectl
 - AWS CLI
@@ -24,3 +25,6 @@ Now you can run the following command to connect to a Kubernetes node using AWS 
 ```bash
 kubectl ssm
 ```
+
+#### Todo
+Need to setup this with krew so that users can directly install this using `kubectl krew install ssm`
